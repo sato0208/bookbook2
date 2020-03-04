@@ -1,0 +1,41 @@
+<h2>Sign up</h2>
+
+<!-- 新規登録する際の記述 -->
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+<!-- 名前欄入力画面。追加で入力 -->
+  <div class="form-group has-icon">
+    <label class="control-label sr-only" for="inputName">Name</label>
+    <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName", placeholder:"名前"%>
+    <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+  </div>
+<!-- 名前欄入力ここまで -->
+
+
+<!-- 以下元々入力されていた文 -->
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
