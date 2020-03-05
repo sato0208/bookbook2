@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root 'books#index'
 
   resources :books, only: [:create, :index, :show, :new, :destroy]
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
 end

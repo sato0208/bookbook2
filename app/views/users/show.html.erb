@@ -12,7 +12,14 @@
 	<h3 class=profile-name">
 <!-- ＊ユーザーネームが表示されませんがとりあえずこのまま進めます -->
 		<%= @user.name %></h3>
-	<%= image_tag('sample-author1.jpg',class: "img-circle pull-left profile-thumb",style:"width: 100px; height: 100px; margin-top:20px;")%>
+
+
+<!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "sample-author1.jpg"%>
+
+	<% if @user.id == current_user.id %>
+	<p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
+	<% end %>
 </div>
 
 <section class="sct-color-1 slice">

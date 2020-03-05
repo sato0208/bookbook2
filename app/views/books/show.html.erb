@@ -6,6 +6,11 @@
 	<% end %>
 </head>
 	<body>
+
+		<!-- bookとひもついているユーザーの画像データを表示させる -->
+	   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+
+
 		<p><strong>Title:</strong>
 			<%= @book.title %></p>
 		<p><strong>Body:</strong>
