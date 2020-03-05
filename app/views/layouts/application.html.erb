@@ -9,7 +9,47 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+<header>
+  <div id="sidemenu">
+    <!-- ユーザーがサインインしている場合 -->
+    <% if user_signed_in? %>
+    <li class="">
+      <%= link_to "Home", "#" %>
+    </li>
+    <li class="">
+      <%= link_to "Users", "#" %>
+    </li>
+    <li class="">
+      <%= link_to 'Books', edit_user_registration_path %>
+    </li>
+    <li class="">
+      <%= link_to "logout", destroy_user_session_path, method: :delete %>
+    </li>
+    <li class="">
+      <!-- 以下のコードは、五章で正しいroutingに書き換えます -->
+      <%= link_to 'マイページ', "#" %>
+    </li>
+
+    <!-- ユーザーがサインインしていない場合 -->
+    <% else %>
+    <li class="">
+      <%= link_to "Home", new_user_registration_path %>
+    </li>
+    <li class="">
+      <%= link_to "about", "#" %>
+    </li>
+    <li class="">
+      <%= link_to "sign up", new_user_session_path %>
+    </li>
+    <li class="">
+      <%= link_to "login", new_user_session_path %>
+    </li>
+    <% end %>
+
   <body>
-    <%= yield %>
+    <div class="container">
+          <%= yield %>
+    </div>
   </body>
 </html>
