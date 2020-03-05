@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% if flash.now[:notice] %>
+	<p><% flash[:notice] %></p>
+	<% end %>
+</head>
+	<body>
+		<p><strong>Title:</strong>
+			<%= @book.title %></p>
+		<p><strong>Body:</strong>
+
+			<%= @book.body %></p>
+
+		<footer>
+
+			<!-- ログインしているユーザーの場合表示させる -->
+			<% if @book.user == current_user %>
+
+			<%= link_to"Edit",books_path(@book.id) %>
+
+			<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+			<% end %>
+
+		</footer>
+	</body>
+</html>
