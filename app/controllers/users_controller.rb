@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+
+# 3/6自分で追加した文
+  def new
+  	@user = User.new
+  end
+  # 新規に作成したらcreateアクションが開く
+
   def show
   	@user = User.find(params[:id])
   end
