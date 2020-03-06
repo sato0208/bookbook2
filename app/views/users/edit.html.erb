@@ -14,14 +14,23 @@
                 <div class="col-md-4 col-md-offset-4">
                   <div class="form-user style-1 rounded has-shadow-1">
                     <div class="form-header text-center">
-                      <h2 class="form-header-title">プロフィール編集</h2>
+                      <h2 class="form-header-title">User info</h2>
                     </div>
 
 
-                    <!-- update失敗時にエラー表示 -->
-                    <% if flash.now[:notice] %>
-                    <p><%= flash[:notice] %></p>
-                    <% end %>
+<!-- エラーメッセージ。表示されないから違うかも -->
+              <% if @user.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
+                  <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+
                     <div class="form-body">
                       <!-- ここにform_forを追加します -->
                       <%= form_for(@user)do |f| %>
@@ -49,6 +58,7 @@
                       </div>
                       <% end %>
                     </div>
+
 
 
 

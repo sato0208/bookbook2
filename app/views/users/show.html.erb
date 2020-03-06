@@ -1,55 +1,56 @@
 <!-- わからなすぎてとりあえずコピーしました。 -->
 <!-- これはユーザのマイページです -->
 
+
 <div class="profile-container">
-	<h3 class="profile-name">BOOKS</h3>
-
-
-
+	<h3 class="profile-name">User info</h3>
+  <!-- update成功時にflash表示 -->
+  <% if flash.now[:notice] %>
+  <p><%= flash[:notice] %></p>
+  <% end %>
+  <!-- update成功flashここまで -->
 
 </div>
 <div class="profile-container">
 	<h3 class=profile-name">
 		<%= @user.name %></h3>
-
-
-<!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
+    <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "sample-author1.jpg"%>
 
-	<% if @user.id == current_user.id %>
-	<p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
-	<% end %>
-</div>
+    <% if @user.id == current_user.id %>
+    <p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
+    <% end %>
+  </div>
 
-<section class="sct-color-1 slice">
-  <div class="container-fluid masonry-container">
-    <div class="row">
-      <div class="col-md-8 col-sm-offset-2">
-        <div class="masonry-wrapper-cols">
-          <div class="masonry-gutter"></div>
-          <div class="masonry-block">
-            <div class="block block-image v1">
+  <section class="sct-color-1 slice">
+    <div class="container-fluid masonry-container">
+      <div class="row">
+        <div class="col-md-8 col-sm-offset-2">
+          <div class="masonry-wrapper-cols">
+            <div class="masonry-gutter"></div>
+            <div class="masonry-block">
+              <div class="block block-image v1">
 
-              <div class="block-image">
-                <div class="view view-first">
-                  <a href="">
-                  </a>
+                <div class="block-image">
+                  <div class="view view-first">
+                    <a href="">
+                    </a>
+                  </div>
                 </div>
-              </div>
 
-<!-- ここから入力した。 -->
-<!-- book投稿一覧 -->
-	<h1>Books</h1>
-	<table>
-		<tr>
-			<th>Title</th>
-			<th>Option</th>
-			<th colspan="3"></th>
-		</tr>
-		<tbody>
-<!-- ここまで入力した -->
+                <!-- ここから入力した。 -->
+                <!-- book投稿一覧 -->
+                <h1>Books</h1>
+                <table>
+                  <tr>
+                   <th>Title</th>
+                   <th>Option</th>
+                   <th colspan="3"></th>
+                 </tr>
+                 <tbody>
+                  <!-- ここまで入力した -->
 
-
+<!-- この下のいらないやつは後で消します。 -->
                   <a href="#"><i class="fa fa-map-marker"></i> ショップ名</a>
                 </h3>
                 <ul class="inline-meta">

@@ -8,18 +8,17 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 	<title>BOOKS</title>
 </head>
-
 <body>
-
 	<!-- book投稿一覧 -->
 	<h1>Books</h1>
 	<table class="table table-condensed">
-		<tr>
-			<th>Title</th>
-			<th>Option</th>
-			<th colspan="3"></th>
-		</tr>
 		<tbody>
+			<tr>
+				<th>Title</th>
+				<th>Option</th>
+				<th colspan="3"></th>
+			</tr>
+			<tbody>
 				<!-- books変数内から一つずつ取り出しbook変数へ -->
 				<% @books.each do |book| %>
 				<!-- bookとひもついているユーザーの画像データを表示させる -->
@@ -31,46 +30,46 @@
 					<%= link_to book_path(book.id) do %>
 					<%= book.title %>
 				</td>
-					<% end %>
+				<% end %>
 				<!-- bodyを表示 -->
 				<td>
 					<%= book.body %>
 				</td>
 				<% end %>
 			</table>
-			</td>
-		</tbody>
-	</table>
-	<!-- book投稿一覧ここまで -->
+		</td>
+	</tbody>
+</table>
+<!-- book投稿一覧ここまで -->
 
 
 
-	<footer>
-		<!-- エラーメッセージ -->
-		<ul>
-			<% @book.errors.full_messages.each do |msg| %>
-			<li>
-				<%= msg %>
-			</li>
-			<% end %>
-		</ul>
-		<!-- エラーメッセージここまで -->
-
-		<!-- 新規投稿画面 -->
-		<h2>New book</h2>
-		<!-- form_for部分 -->
-
-		<%= form_for(@book, url: '/books') do |f| %>
-
-		<label>Title</label>
-		<%= f.text_field :title %>
-		<label>Option</label>
-		<%= f.text_area :body %>
-
-		<%= f.submit 'Create Book' %>
+<footer>
+	<!-- エラーメッセージ -->
+	<ul>
+		<% @book.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
 		<% end %>
+	</ul>
+	<!-- エラーメッセージここまで -->
 
-	</footer>
+	<!-- 新規投稿画面 -->
+	<h2>New book</h2>
+	<!-- form_for部分 -->
+
+	<%= form_for(@book, url: '/books') do |f| %>
+
+	<label>Title</label>
+	<%= f.text_field :title %>
+	<label>Option</label>
+	<%= f.text_area :body %>
+
+	<%= f.submit 'Create Book' %>
+	<% end %>
+
+</footer>
 
 </body>
 </html>

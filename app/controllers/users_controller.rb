@@ -18,10 +18,8 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
 	  	if @user.update(user_params)
-	  		redirect_to user_path(@user.id)
-	  	else redirect_to edit_user_path notice: '投稿の削除に成功しました！'
-	  		flash[:notice] = "失敗したよ"
-	  		# render :edit
+	  		redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
+	  	else render :edit
 	  	end
   	end
 

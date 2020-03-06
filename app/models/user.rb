@@ -10,5 +10,11 @@ class User < ApplicationRecord
   # プロフィール画像投稿できるようにする記述
   attachment :profile_image
   # 名前カラムの入力数は2〜20文字の間でバリデート
-  validates :name, length:{in: 2..20 }
+  # validates :name, length:{in: 2..20 }, message: 'This site is only for under 2 and over 20'
+
+  # 二文字以下はバリデート
+  validates :name, presence: true, length:{ minimum: 2}
+  # 二十文字以上はバリデート
+  validates :name, presence: true, length:{ maximum: 20}
+
 end

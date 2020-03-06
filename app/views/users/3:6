@@ -1,3 +1,5 @@
+1
+
 SublimeTextのショートカットで覚えたい〜〜〜〜
 
 CTRL＋L
@@ -23,7 +25,12 @@ CTRL＋L
 
 
 
-ユーザ登録画面のバリデーション機能の実装する際の学び〜〜〜
+
+
+
+2
+
+ユーザ登録画面の変更時のflash機能実装する際の学び〜〜〜
 
 コントローラ画面でredirecto_toを使う場合
 redirect_to パス名, notice: "エラーメッセージ"
@@ -39,3 +46,51 @@ render :アクション名
   <% end %>
 
   とviewに書く際に％＝を記入し忘れていたのでエラーメッセージが表示されなかった
+
+
+
+
+
+
+
+3
+バリデーションエラーを表示させたい！！！！〜〜〜〜〜
+まずmodelにバリデーション
+message.rb
+
+class Message < ApplicationRecord
+  belongs_to :user
+  validates :title, presence: true, length: { maximum: 50 }
+  validates :content, presence: true, length: { maximum: 140 }
+end
+
+titleカラムと。contentカラムは空白では登録できんぞ！ってこと。
+エラーメッセージのファイルの作成~~~~~~~~~~
+layouts/_error_messages.html.erb
+
+<% if model.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+errors.full_messagesは
+全てのエラーメッセージを配列で取得します。
+複数のメッセージが格納されていることもあるので、全て表示するには each でループで回しましょう。
+
+
+def update
+  	@user = User.find(params[:id])
+	  	if @user.update(user_params)
+	  		redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
+	  	else redirect_to edit_user_path
+	  	end
+  	end
+
+	else redirect_to edit_user_pathを
+	else render :editに変更したらエラーメッセージがやっと表示された。
+	renderとredirectの違いが分からないから調べること
