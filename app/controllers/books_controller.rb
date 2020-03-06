@@ -28,8 +28,14 @@ class BooksController < ApplicationController
 # 投稿データの詳細画面表示
 	def show
 		@book = Book.find(params[:id])
+		@books = Book.all
 		# @userに関連づけられた投稿のみ@booksに渡す
 		# @books = @user.books.page(params[:page]).reverse_order
+	end
+
+# 投稿データの編集機能
+	def edit
+		@book = Book.find(params[:id])
 	end
 
 # 削除機能

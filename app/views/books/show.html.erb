@@ -10,20 +10,18 @@
 	<% end %>
 </head>
 	<body>
+<h2>Book detail</h2>
+<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
+	    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
 
-		<!-- bookとひもついているユーザーの画像データを表示させる -->
-	   <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
-
-
-		<p><strong>Title:</strong>
+	    	<!-- （ブックタイトル） -->
 			<%= @book.title %></p>
-		<p><strong>Body:</strong>
-
+			<!-- （ブックボディ） -->
 			<%= @book.body %></p>
 
 		<footer>
 
-			<!-- ログインしているユーザーの場合表示させる -->
+	<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
 			<% if @book.user == current_user %>
 
 			<%= link_to"Edit",books_path(@book.id) %>

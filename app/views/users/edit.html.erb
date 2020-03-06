@@ -18,7 +18,7 @@
                     </div>
 
 
-<!-- エラーメッセージ。表示されないから違うかも -->
+              <!-- エラーメッセージ2〜20文字の間、空白はダメ-->
               <% if @user.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
@@ -29,6 +29,7 @@
                   </ul>
                 </div>
               <% end %>
+              <!-- エラーメッセージここまで -->
 
 
                     <div class="form-body">
