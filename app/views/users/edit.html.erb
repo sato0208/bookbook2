@@ -18,8 +18,10 @@
                     </div>
 
 
-
-
+                    <!-- update失敗時にエラー表示 -->
+                    <% if flash.now[:notice] %>
+                    <p><%= flash[:notice] %></p>
+                    <% end %>
                     <div class="form-body">
                       <!-- ここにform_forを追加します -->
                       <%= form_for(@user)do |f| %>

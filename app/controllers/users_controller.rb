@@ -17,9 +17,13 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user.update(user_params)
-  	redirect_to user_path(@user.id)
-  end
+	  	if @user.update(user_params)
+	  		redirect_to user_path(@user.id)
+	  	else redirect_to edit_user_path notice: '投稿の削除に成功しました！'
+	  		flash[:notice] = "失敗したよ"
+	  		# render :edit
+	  	end
+  	end
 
   private
   # 名前とプロフィールイメージがきちんと入っているかチェックする
