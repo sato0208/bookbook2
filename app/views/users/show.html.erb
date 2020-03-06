@@ -3,7 +3,7 @@
 
 
 <div class="profile-container">
-	<h3 class="profile-name">User info</h3>
+  <h3 class="profile-name">User info</h3>
   <!-- update成功時にflash表示 -->
   <% if flash.now[:notice] %>
   <p><%= flash[:notice] %></p>
@@ -12,11 +12,20 @@
 
 </div>
 <div class="profile-container">
-	<h3 class=profile-name">
-		<%= @user.name %></h3>
-    <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
+  <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
+    <h3 class=profile-kawauso">
     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "sample-author1.jpg"%>
 
+    <h3 class=profile-name">
+    <string>name</string>
+    <%= @user.name %></h3>
+
+    <h3 class=profile-introduction">
+    <string>introduction</string>
+    <%= @user.introduction %></h3>
+
+
+    <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
     <% if @user.id == current_user.id %>
     <p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
     <% end %>
@@ -43,33 +52,21 @@
                 <h1>Books</h1>
                 <table>
                   <tr>
-                   <th>Title</th>
-                   <th>Option</th>
-                   <th colspan="3"></th>
-                 </tr>
-                 <tbody>
-                  <!-- ここまで入力した -->
+                    <th>Title</th>
+                    <th>Option</th>
+                    <th colspan="3"></th>
+                  </tr>
+                  <tbody>
+                    <!-- ここまで入力した -->
 
-<!-- この下のいらないやつは後で消します。 -->
-                  <a href="#"><i class="fa fa-map-marker"></i> ショップ名</a>
-                </h3>
-                <ul class="inline-meta">
-                  <li>By
-                    <a href="#">投稿者名</a>
-                  </li>
-                  <li>
-                    <a href="#">23 コメント</a>
-                  </li>
-                  <li>
-                    <a href="#">削除</a>
-                  </li>
-                </ul>
+<!-- ※ここに自分が投稿したBook一覧を表示させる -->
+
+
+                </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
