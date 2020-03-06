@@ -1,3 +1,6 @@
+# これはbooksコントローラー
+
+
 class BooksController < ApplicationController
 	def new
 		@book = Book.new
@@ -9,10 +12,11 @@ class BooksController < ApplicationController
 		@book = Book.new(book_params)
 # 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
 		@book.user_id = current_user.id
+		@books = Book.all
 		if @book.save
 		   redirect_to books_path
 		else
-		　　render :index
+			render :index
 		end
 	end
 
