@@ -38,6 +38,16 @@ class BooksController < ApplicationController
 		@book = Book.find(params[:id])
 	end
 
+# 編集して登録する機能
+	def update
+		@book = Book.find(params[:id])
+		if @book.update(book_params)
+		redirect_to books_path(@book.id)
+		else
+			render :edit
+		end
+	end
+
 # 削除機能
 	def destroy
 		@book = Book.find(params[:id])

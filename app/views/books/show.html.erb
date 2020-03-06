@@ -24,7 +24,7 @@
 	<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
 			<% if @book.user == current_user %>
 
-			<%= link_to"Edit",books_path(@book.id) %>
+			<%= link_to"Edit",edit_book_path(@book.id) %>
 
 			<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
 			<% end %>

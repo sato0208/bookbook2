@@ -65,32 +65,39 @@ class Message < ApplicationRecord
 end
 
 titleカラムと。contentカラムは空白では登録できんぞ！ってこと。
+
+
 エラーメッセージのファイルの作成~~~~~~~~~~
 layouts/_error_messages.html.erb
 
-<% if model.errors.any? %>
+
+  <!-- エラーメッセージを表示させる -->
+<% if @book.errors.any? %>
   <div class="alert alert-warning">
+    <h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
     <ul>
-      <% model.errors.full_messages.each do |message| %>
+      <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
+<!-- エラーメッセージここまで -->
 
 errors.full_messagesは
 全てのエラーメッセージを配列で取得します。
 複数のメッセージが格納されていることもあるので、全て表示するには each でループで回しましょう。
+@bookの部分をモデル名にする。＠のつけ忘れ、コントローラの記述漏れ
 
 
 def update
   	@user = User.find(params[:id])
 	  	if @user.update(user_params)
 	  		redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
-	  	else redirect_to edit_user_path
+	  	else redirect_to edit_user_path  ※ここがだめだった
 	  	end
   	end
 
 	else redirect_to edit_user_pathを
-	else render :editに変更したらエラーメッセージがやっと表示された。
+	※else render :editに変更したらエラーメッセージがやっと表示された。
 	renderとredirectの違いが分からないから調べること
