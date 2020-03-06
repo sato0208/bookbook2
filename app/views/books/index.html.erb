@@ -9,6 +9,13 @@
 	<title>BOOKS</title>
 </head>
 <body>
+	<!-- update成功時にflash表示 -->
+	<% if flash.now[:notice] %>
+	<p><%= flash[:notice] %></p>
+	<% end %>
+	<!-- update成功flashここまで -->
+
+
 	<!-- book投稿一覧 -->
 	<h1>Books</h1>
 	<table class="table table-condensed">
@@ -22,58 +29,54 @@
 				<!-- books変数内から一つずつ取り出しbook変数へ -->
 				<% @books.each do |book| %>
 				<!-- bookとひもついているユーザーの画像データを表示させる -->
-				<td>
-					<%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+				<tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+
+					<!-- タイトルにリンク付けする -->
+					<td><%= link_to book_path(book.id) do %>
+						<%= book.title %><% end %></td>
+						<!-- bodyを表示 -->
+						<td><%= book.body %></td></tr>
+						<% end %>
+					</table>
 				</td>
-				<!-- タイトルにリンク付けする -->
-				<td>
-					<%= link_to edit_book_path(book.id) do %>
-					<%= book.title %>
-				</td>
-				<% end %>
-				<!-- bodyを表示 -->
-				<td>
-					<%= book.body %>
-				</td>
-				<% end %>
-			</table>
-		</td>
-	</tbody>
-</table>
-<!-- book投稿一覧ここまで -->
+			</tbody>
+		</table>
+		<!-- book投稿一覧ここまで -->
 
 
 
-<footer>
-	<!-- エラーメッセージ。空白はダメ-->
-	<% if @book.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
-		<ul>
-			<% @book.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
+		<footer>
+			<!-- エラーメッセージ。空白はダメ-->
+			<% if @book.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
+				<ul>
+					<% @book.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
 			<% end %>
-		</ul>
-	</div>
-	<% end %>
-	<!-- エラーメッセージここまで -->
+			<!-- エラーメッセージここまで -->
 
 
-	<!-- 新規投稿画面ここから -->
-	<h2>New book</h2>
-	<!-- form_for部分 -->
-	<%= form_for(@book, url: '/books') do |f| %>
+			<!-- 新規投稿画面ここから -->
+			<h2>New book</h2>
+			<!-- form_for部分 -->
+			<%= form_for(@book, url: '/books') do |f| %>
 
-	<label>Title</label>
-	<%= f.text_field :title %>
-	<label>Option</label>
-	<%= f.text_area :body %>
+			<label>Title
+				<%= f.text_field :title %>
+			</label>
+			<label>Option
+				<%= f.text_area :body %>
+			</label>
 
-	<%= f.submit 'Create Book' %>
-	<% end %>
-	<!-- 新規投稿画面ここまで -->
+			<%= f.submit 'Create Book' %>
+			<% end %>
+			<!-- 新規投稿画面ここまで -->
 
 
-</footer>
-</body>
-</html>
+		</footer>
+	</body>
+	</html>

@@ -14,7 +14,7 @@ class BooksController < ApplicationController
 		@book.user_id = current_user.id
 		@books = Book.all
 		if @book.save
-		   redirect_to books_path
+		   redirect_to books_path, notice: 'You have creatad book successfully.'
 		else
 			render :index
 		end
