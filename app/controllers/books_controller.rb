@@ -28,6 +28,8 @@ class BooksController < ApplicationController
 	def show
 		@book = Book.find(params[:id])
 		@books = Book.all
+		@user = Book.find(params[:id]).user
+		# @user = User.find(params[:id]).book
 		# @userに関連づけられた投稿のみ@booksに渡す
 		# @books = @user.books.page(params[:page]).reverse_order
 		# 自分で投稿した内容のみを表示する

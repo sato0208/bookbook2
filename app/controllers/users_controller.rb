@@ -22,8 +22,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-# 自分で投稿した内容のみを表示する
-    @user_books = current_user.book.all
+# Userテーブルからユーザデータを取り出してそれに紐づく内容をbooksとして表示する
+    @user_books = User.find(params[:id]).books
   end
 
   def edit
@@ -38,6 +38,10 @@ class UsersController < ApplicationController
 	  	else render :edit
 	  	end
   	end
+
+  def index
+    @users = User.all
+  end
 
   private
   # 名前とプロフィールイメージがきちんと入っているかチェックする
