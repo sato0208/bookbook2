@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#show'
+  root 'books#index'
 
 # 自動的にルーティングを設定してくれる
   resources :books, only: [:create, :index, :show, :new, :edit, :destroy, :update]

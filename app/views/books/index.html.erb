@@ -25,57 +25,57 @@
 				<th>Title</th>
 				<th>Option</th>
 			</tr>
-				<!-- books変数内から一つずつ取り出しbook変数へ -->
-				<% @books.each do |book| %>
-				<!-- bookとひもついているユーザーの画像データを表示させる -->
-				<tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+			<!-- books変数内から一つずつ取り出しbook変数へ -->
+			<% @books.each do |book| %>
+			<!-- bookとひもついているユーザーの画像データを表示させる -->
+			<tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
 
-					<!-- タイトルにリンク付けする -->
-					<td><%= link_to book_path(book.id) do %>
-						<%= book.title %><% end %></td>
-						<!-- bodyを表示 -->
-						<td><%= book.body %></td></tr>
-						<% end %>
-					</table>
-				</td>
-			</tbody>
-		</table>
-		<!-- book投稿一覧ここまで -->
-
-
-
-		<footer>
-			<!-- エラーメッセージ。空白はダメ-->
-			<% if @book.errors.any? %>
-			<div id="error_explanation">
-				<h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
-				<ul>
-					<% @book.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
+				<!-- タイトルにリンク付けする -->
+				<td><%= link_to book_path(book.id) do %>
+					<%= book.title %><% end %></td>
+					<!-- bodyを表示 -->
+					<td><%= book.body %></td></tr>
 					<% end %>
-				</ul>
-			</div>
-			<% end %>
-			<!-- エラーメッセージここまで -->
+				</table>
+			</td>
+		</tbody>
+	</table>
+	<!-- book投稿一覧ここまで -->
 
 
-			<!-- 新規投稿画面ここから -->
-			<h2>New book</h2>
-			<!-- form_for部分 -->
-			<%= form_for(@book, url: '/books') do |f| %>
 
-			<label>Title
-				<%= f.text_field :title %>
-			</label><br>
-			<label>Option
-				<%= f.text_area :body %>
-			</label><br>
+	<footer>
+		<!-- エラーメッセージ。空白はダメ-->
+		<% if @book.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= @book.errors.count %>errors prohibited this obj from being saved:</h2>
+			<ul>
+				<% @book.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<!-- エラーメッセージここまで -->
 
-			<%= f.submit 'Create Book' %>
-			<% end %>
-			<!-- 新規投稿画面ここまで -->
+
+		<!-- 新規投稿画面ここから -->
+		<h2>New book</h2>
+		<!-- form_for部分 -->
+		<%= form_for(@book, url: '/books') do |f| %>
+
+		<label>Title
+			<%= f.text_field :title %>
+		</label><br>
+		<label>Option
+			<%= f.text_area :body %>
+		</label><br>
+
+		<%= f.submit 'Create Book' %>
+		<% end %>
+		<!-- 新規投稿画面ここまで -->
 
 
-		</footer>
-	</body>
-	</html>
+	</footer>
+</body>
+</html>

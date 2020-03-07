@@ -9,26 +9,26 @@
 	<p><% flash[:notice] %></p>
 	<% end %>
 </head>
-	<body>
-<h2>Book detail</h2>
-<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
-	    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-	    <%= @user.name %>
-	    	<!-- （ブックタイトル） -->
-			<%= @book.title %></p>
-			<!-- （ブックボディ） -->
-			<%= @book.body %></p>
+<body>
+	<h2>Book detail</h2>
+	<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
+	<%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
+	<%= @user.name %>
+	<!-- （ブックタイトル） -->
+	<%= @book.title %></p>
+	<!-- （ブックボディ） -->
+	<%= @book.body %></p>
 
-		<footer>
+	<footer>
 
-	<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
-			<% if @book.user == current_user %>
+		<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
+		<% if @book.user == current_user %>
 
-			<%= link_to"Edit",edit_book_path(@book.id) %>
+		<%= link_to"Edit",edit_book_path(@book.id) %>
 
-			<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
-			<% end %>
+		<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+		<% end %>
 
-		</footer>
-	</body>
+	</footer>
+</body>
 </html>

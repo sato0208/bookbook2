@@ -66,3 +66,36 @@ bookビューのshowにこう記述
 		<%= @user.name %>
 これでブックのところでユーザーテーブルのnameカラムを表示させることができた。
 
+
+
+
+
+
+6
+ログインした後、マイページに遷移して欲しい場合、
+controller/application.controllerの中に記述
+before_action :authenticate_user!の一文の下に書きました。
+これをしてみたらエラー。
+	def after_sign_in_path_for(resource)
+    	user_path
+  	end
+これは一覧ページなどの決まったルーとパスに飛ばすもの。
+マイページはURLに番号が振られていて各人によって違うのでこれでは無理だった。
+ログイン後に遷移するpathを設定
+
+こうしたら簡単にできた。
+user_path＃showに飛ばしたいときURL部分に各ページの数字が入る。
+
+	def after_sign_in_path_for(resource) 
+   		 user_url(resource)
+   	end
+
+
+
+
+
+
+
+
+
+

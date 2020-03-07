@@ -1,4 +1,3 @@
-<!-- わからなすぎてとりあえずコピーしました。 -->
 <!-- これはユーザのマイページです -->
 
 
@@ -47,16 +46,7 @@
                       </div>
                     </div>
 
-
-
-
-
-
-
-
-
-
-          <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
+                    <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
                     <h1>Books</h1>
                     <tbody>
                       <table class="table table-condensed">
@@ -64,9 +54,9 @@
                           <th>Title</th>
                           <th>Option</th>
                           <th colspan="3"></th></tr>
-      <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
+                          <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
                           <% @user_books.each do |book| %>
-          <!-- bookとひもついているユーザーの画像データを表示させる -->
+                          <!-- bookとひもついているユーザーの画像データを表示させる -->
                           <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
 
                             <!-- タイトルにリンク付けする -->
@@ -76,7 +66,7 @@
                               <td><%= book.body %></td>
                             </tr>
                             <% end %>
-            <!-- book一覧ここまで -->
+                            <!-- book一覧ここまで -->
 
 
                           </table>

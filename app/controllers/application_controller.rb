@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
 	before_action :authenticate_user!
 
 
+	# ログイン後にマイページに飛ぶ
+	def after_sign_in_path_for(resource) 
+
+   		 user_url(resource)
+
+ 	 end
+
 	# 名前ログインのために必要な記述
 	protected
 	# ログイン時のパラメーターを設定する
