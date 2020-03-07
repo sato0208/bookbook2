@@ -4,10 +4,15 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	# authenticate_user！でログイン認証されてない場合ログイン画面へリダイレクトとする
 	before_action :authenticate_user!
+
+
+	# 名前ログインのために必要な記述
 	protected
+	# ログイン時のパラメーターを設定する
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
 	end
+	# データ更新時のパラメーターを設定する
 	def configure_account_update_params
         devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email])
 
