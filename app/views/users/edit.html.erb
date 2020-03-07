@@ -44,9 +44,6 @@
 
                         <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
                         <div class="form-group has-icon">
-                          <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
-                          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
-                          <label class="control-label sr-only" for="">ProfileImage</label>
 
                           <!-- attachment_fieldにより画像選択用のボタンを表示させる -->
                           <%= f.attachment_field :profile_image, placeholder:"プロフィール画像", class:"user-edit-form" %>

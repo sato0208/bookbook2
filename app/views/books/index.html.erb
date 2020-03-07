@@ -25,11 +25,10 @@
 				<th>Option</th>
 				<th colspan="3"></th>
 			</tr>
-			<tbody>
 				<!-- books変数内から一つずつ取り出しbook変数へ -->
 				<% @books.each do |book| %>
 				<!-- bookとひもついているユーザーの画像データを表示させる -->
-				<tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+				<tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
 
 					<!-- タイトルにリンク付けする -->
 					<td><%= link_to book_path(book.id) do %>
