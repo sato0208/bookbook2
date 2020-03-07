@@ -6,9 +6,22 @@ class UsersController < ApplicationController
   end
   # 新規に作成したらcreateアクションが開く
 
+# userデータの保存
+  def create
+# user_paramsで投稿データとして許可されているパラメーターかチェック
+    @user = User.new(user_params)
+# 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
+    @user.user_id = current_user.id
+    @users = User.all
+    if @user.save
+       redirect_to users_path, notice: 'Welcome! You have signed up successfully.'
+    else
+      render :index
+    end
+  end
+
   def show
   	@user = User.find(params[:id])
-    @book = Book.find(params[:id])
 # 自分で投稿した内容のみを表示する
     @user_books = current_user.book.all
   end

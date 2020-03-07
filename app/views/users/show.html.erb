@@ -14,7 +14,7 @@
 <div class="profile-container">
   <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
   <h3 class=profile-kawauso">
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "sample-author1.jpg"%>
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "no_image.jpg"%>
 
     <h3 class=profile-name">
       <string>name</string>
@@ -47,7 +47,7 @@
                       </div>
                     </div>
 
-    <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
+                    <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
                     <h1>Books</h1>
                     <tbody>
                       <table class="table table-condensed">
@@ -55,9 +55,9 @@
                           <th>Title</th>
                           <th>Option</th>
                           <th colspan="3"></th></tr>
-    <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
+                          <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
                           <% @user_books.each do |book| %>
-    <!-- bookとひもついているユーザーの画像データを表示させる -->
+                          <!-- bookとひもついているユーザーの画像データを表示させる -->
                           <tr><td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
 
                             <!-- タイトルにリンク付けする -->
@@ -66,14 +66,14 @@
                               <!-- bodyを表示 -->
                               <td><%= book.body %></td>
                             </tr>
-                              <% end %>
-                            </table>
-                          </tbody>
-                        </div>
+                            <% end %>
+                          </table>
+                        </tbody>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>

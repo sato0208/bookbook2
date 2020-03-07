@@ -12,7 +12,7 @@
 	<body>
 <h2>Book detail</h2>
 <!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
-	    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+	    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
 
 	    	<!-- （ブックタイトル） -->
 			<%= @book.title %></p>

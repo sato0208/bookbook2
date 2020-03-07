@@ -17,6 +17,6 @@ class User < ApplicationRecord
   # 二十文字以上はバリデート
   validates :name, presence: true, length:{ maximum: 20}
   # 五十文字以上はバリデート
-  validates :introduction, presence: true, length:{ maximum: 50}
+  validates :introduction, length:{ maximum: 50}
 
 end
