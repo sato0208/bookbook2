@@ -1,6 +1,5 @@
 # これはbooksコントローラー
 
-
 class BooksController < ApplicationController
 	def new
 		@book = Book.new
@@ -31,6 +30,8 @@ class BooksController < ApplicationController
 		@books = Book.all
 		# @userに関連づけられた投稿のみ@booksに渡す
 		# @books = @user.books.page(params[:page]).reverse_order
+		# 自分で投稿した内容のみを表示する
+		# @bookbook = current_user.books.find(params[:id])
 	end
 
 # 投稿データの編集機能
@@ -58,6 +59,6 @@ class BooksController < ApplicationController
 # 投稿データのストロングパラメーター create、updateに渡す役割
 private
 	def book_params
-		params.require(:book).permit(:title, :body)
+		params.require(:book).permit(:title, :body, :user_id)
 	end
 end

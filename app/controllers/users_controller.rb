@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @book = Book.find(params[:id])
+# 自分で投稿した内容のみを表示する
+    @user_books = current_user.book.all
   end
 
   def edit

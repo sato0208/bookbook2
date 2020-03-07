@@ -20,13 +20,13 @@
 <% end %>
 <!-- エラーメッセージここまで -->
 
-  <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
-  <div clas="img-kawauso">
-    <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-  </div>
+
+<!-- book投稿の編集フォーム -->
   <!-- titleフォーム -->
+  <h1>Editing Book</h1>
+  <div class="tekitou">
   <div class="form-group has-icon">
-    <string>Title</string>
+    <string>body</string>
     <label class="control-label sr-only" for="title">Title</label>
     <%= f.text_field :title, autofocus: true, class:"form-control", id:"title",pracholder:"タイトル" %>
     <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
@@ -41,12 +41,14 @@
       </div>
       <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
     </div>
+  </div>
     <% end %>
 
 
   <%= link_to"show",book_path(@book.id) %>
   |
-  <a class="back" href="/books">Back
-  </a>
+  <a class="back" href="/books">Back</a>
+
+  <div>CopyRight Infratop.inc</div>
 
   </div>
