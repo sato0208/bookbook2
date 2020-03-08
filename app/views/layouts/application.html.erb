@@ -14,19 +14,25 @@
 </head>
 
 <header>
+  <span>Bookers</span>
+
   <div id="sidemenu">
     <!-- ユーザーがサインインしている場合 -->
     <% if user_signed_in? %>
     <li class="">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
       <%= link_to "Home", user_path(current_user.id) %>
     </li>
     <li class="">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
       <%= link_to "Users", users_path %>
     </li>
     <li class="">
+      <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
       <%= link_to 'Books', books_path %>
     </li>
     <li class="">
+      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
       <%= link_to "logout", destroy_user_session_path, method: :delete %>
     </li>
     <!-- ユーザーがサインインしていない場合 -->
@@ -50,54 +56,79 @@
 <!-- ここからサイドバー -->
 <div class="container">
   <div class="row">
-    <div class="col-sm-4" style="background-color: yellow;">
+    <div class="col-sm-3" style="background-color: yellow;">
 
       <!-- ログインしていたらサイドバーを表示させる -->
       <% if user_signed_in? %>
 
       <!-- ここからプロフィール -->
+      <h2>User info</h2>
       <!-- ユーザのプロフィール画像 -->
-      <h3 class=profile-kawauso">
-        <%= attachment_image_tag @user_profire, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "no_image.jpg"%>
+      <h4 class=profile-kawauso">
+        <%= attachment_image_tag @user_profire, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
+        <table class="table table-condensed">
+          <tr>
+            <th>name</th>
+            <td><%= @user_profire.name %></td>
+          </tr>
 
-        <h3 class=profile-name">
-          <string>name</string>
-          <%= @user_profire.name %></h3>
+          <tr>
+            <th>introduction</th>
+            <td><%= @user_profire.introduction %></td>
+          </tr>
+        </table>
+      </h4>
+      <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
+      <% if @user_profire == current_user %>
+      <!-- クラス：ボタン、レンチのアイコン -->
+      <%= link_to "",edit_user_path(@user_profire), class: "btn btn-default glyphicon glyphicon-wrench" %>
 
-          <h3 class=profile-introduction">
-            <string>introduction</string>
-            <%= @user_profire.introduction %></h3>
+      <% end %>
 
-            <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
-            <% if @user_profire == current_user.id %>
-            <p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
-            <% end %>
-            <!-- ここまでプロフィール -->
 
-            <!-- 新規投稿画面ここから -->
-            <h2>New book</h2>
-            <!-- form_for部分 -->
-            <%= form_for(@book, url: '/books') do |f| %>
 
-            <label>Title
-              <%= f.text_field :title %>
-            </label><br>
-            <label>Option
-              <%= f.text_area :body %>
-            </label><br>
 
-            <%= f.submit 'Create Book' %>
-            <% end %>
-            <% end %>
-          </div>
-            <!-- 新規投稿画面ここまで -->
-          <!-- サイドバーここまで -->
 
-          <body>
-            <div class="col-sm-8" style="background-color: orange;">
-              <%= yield %>
-            </div>
-          </div>
-        </body>
-      </body>
-      </html>
+
+
+
+
+
+
+      <!-- ここまでプロフィール -->
+
+      <!-- 新規投稿画面ここから -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>New book</h2>
+      <!-- form_for部分 -->
+      <%= form_for(@book, url: '/books') do |f| %>
+
+      <label>Title
+        <%= f.text_field :title %>
+      </label><br>
+      <label>Option
+        <%= f.text_area :body %>
+      </label><br>
+
+      <input type="submit" name="commit" value="Create book" class="btn btn-primary" data-disable-with="Create book">
+
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+    <!-- 新規投稿画面ここまで -->
+    <!-- サイドバーここまで -->
+
+    <body>
+      <div class="col-sm-9" style="background-color: orange;">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</body>
+</html>

@@ -12,6 +12,8 @@ def create
 # 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
 @book.user_id = current_user.id
 @books = Book.all
+@user_profire = current_user
+
 if @book.save
 	redirect_to books_path, notice: 'You have creatad book successfully.'
 else
@@ -32,7 +34,7 @@ def show
 	@books = Book.all
 	@user = Book.find(params[:id]).user
 	@user_profire = current_user
-	
+
 		# @user = User.find(params[:id]).book
 		# @userに関連づけられた投稿のみ@booksに渡す
 		# @books = @user.books.page(params[:page]).reverse_order

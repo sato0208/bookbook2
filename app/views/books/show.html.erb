@@ -24,10 +24,14 @@
 		<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
 		<% if @book.user == current_user %>
 
-		<%= link_to"Edit",edit_book_path(@book.id) %>
+		<span class="label label-success">
+			<%= link_to "Edit",edit_book_path(@book.id) %>
+		</span>
 
+		<span class="label label-danger">
 		<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
 		<% end %>
+		</span>
 
 	</footer>
 </body>
