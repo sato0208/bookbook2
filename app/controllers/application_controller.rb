@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	# デバイスのコントローラー用
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	# authenticate_user！でログイン認証されてない場合ログイン画面へリダイレクトとする
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:show]
 
 
 	# ログイン後にマイページに飛ぶ
