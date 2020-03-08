@@ -90,7 +90,7 @@ user_path＃showに飛ばしたいときURL部分に各ページの数字が入�
    		 user_url(resource)
    	end
 
-
+resourceがユーザー情報をまとめて持ってくれているのでuserのURLをresourceに合わせて飛んでくれーみたいな感じ。
 
 
 

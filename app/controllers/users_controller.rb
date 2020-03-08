@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
 # Userテーブルからユーザデータを取り出してそれに紐づく内容をbooksとして表示する
     @user_books = User.find(params[:id]).books
+    @book = Book.new
   end
 
   def edit
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @book = Book.new
   end
 
   private

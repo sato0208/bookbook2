@@ -59,22 +59,6 @@
 		<!-- エラーメッセージここまで -->
 
 
-		<!-- 新規投稿画面ここから -->
-		<h2>New book</h2>
-		<!-- form_for部分 -->
-		<%= form_for(@book, url: '/books') do |f| %>
-
-		<label>Title
-			<%= f.text_field :title %>
-		</label><br>
-		<label>Option
-			<%= f.text_area :body %>
-		</label><br>
-
-		<%= f.submit 'Create Book' %>
-		<% end %>
-		<!-- 新規投稿画面ここまで -->
-
 
 	</footer>
 </body>
