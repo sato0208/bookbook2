@@ -4,15 +4,14 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookbook2</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Bookbook2</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
 <header>
   <div id="sidemenu">
@@ -30,7 +29,6 @@
     <li class="">
       <%= link_to "logout", destroy_user_session_path, method: :delete %>
     </li>
-
     <!-- ユーザーがサインインしていない場合 -->
     <% else %>
     <li class="">
@@ -50,40 +48,56 @@
 </header>
 
 <!-- ここからサイドバー -->
-<div id="sideber">
-      <div class="row">
-  <div class="col-lg-4" style="background-color: yellow;">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" style="background-color: yellow;">
 
-<!-- 新規投稿画面ここから -->
-    <h2>New book</h2>
-    <!-- form_for部分 -->
-    <%= form_for(@book, url: '/books') do |f| %>
+      <!-- ログインしていたらサイドバーを表示させる -->
+      <% if user_signed_in? %>
 
-    <label>Title
-      <%= f.text_field :title %>
-    </label><br>
-    <label>Option
-      <%= f.text_area :body %>
-    </label><br>
+      <!-- ここからプロフィール -->
+      <!-- ユーザのプロフィール画像 -->
+      <h3 class=profile-kawauso">
+        <%= attachment_image_tag @user_profire, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "no_image.jpg"%>
 
-    <%= f.submit 'Create Book' %>
-    <% end %>
-    <!-- 新規投稿画面ここまで -->
+        <h3 class=profile-name">
+          <string>name</string>
+          <%= @user_profire.name %></h3>
 
+          <h3 class=profile-introduction">
+            <string>introduction</string>
+            <%= @user_profire.introduction %></h3>
 
+            <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
+            <% if @user_profire == current_user.id %>
+            <p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
+            <% end %>
+            <!-- ここまでプロフィール -->
 
+            <!-- 新規投稿画面ここから -->
+            <h2>New book</h2>
+            <!-- form_for部分 -->
+            <%= form_for(@book, url: '/books') do |f| %>
 
-</div>
-</div>
-</div>
+            <label>Title
+              <%= f.text_field :title %>
+            </label><br>
+            <label>Option
+              <%= f.text_area :body %>
+            </label><br>
 
+            <%= f.submit 'Create Book' %>
+            <% end %>
+            <% end %>
+          </div>
+            <!-- 新規投稿画面ここまで -->
+          <!-- サイドバーここまで -->
 
-
-  <body>
-    <div class="container">
-        <div class="col-lg-8" style="background-color: orange;">
-          <%= yield %>
-        </div>
-  </div>
-  </body>
-</html>
+          <body>
+            <div class="col-sm-8" style="background-color: orange;">
+              <%= yield %>
+            </div>
+          </div>
+        </body>
+      </body>
+      </html>
