@@ -9,6 +9,10 @@
 
 
 <body>
+	
+<div class="container">
+<div class="row">
+<div class="top-message col-md-offset-4 col-md-6">
 	<h1>Welcome to
 <span class="glyphicon glyphicon-book"></span>
 <strong>Bookers!</strong></h1>
@@ -18,8 +22,10 @@
 <p>about various books!</p>
 
 
-<%= link_to"Log in",new_user_session_path, class:"btn btn-info" %>
-<%= link_to"Sign Up",new_user_registration_path, class:"btn btn-success" %>
+<%= link_to"Log in",new_user_session_path, class:"btn btn-info btn-block" %>
+<%= link_to"Sign Up",new_user_registration_path, class:"btn btn-success btn-block" %>
+</div>
+</div>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 # 自動的にルーティングを設定してくれる
   resources :books, only: [:create, :index, :show, :new, :edit, :destroy, :update]
-  resources :users, only: [:show, :edit, :update, :new, :index]
+  resources :users, only: [:show, :edit, :update, :new, :index, :destroy]
   # resources :homes, only: [:about, :top]
 
 end

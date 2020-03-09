@@ -14,12 +14,11 @@ def create
 @book.user_id = current_user.id
 @books = Book.all
 @user_profire = current_user
-
-if @book.save
-	redirect_to books_path, notice: 'You have creatad book successfully.'
-else
-	render :index
-end
+	if @book.save
+		redirect_to books_path, notice: 'You have creatad book successfully.'
+	else
+		render :index
+	end
 end
 
 def index
@@ -35,27 +34,20 @@ def show
 	@books = Book.all
 	@user = Book.find(params[:id]).user
 	@user_profire = current_user
-
-		# @user = User.find(params[:id]).book
-		# @userに関連づけられた投稿のみ@booksに渡す
-		# @books = @user.books.page(params[:page]).reverse_order
-		# 自分で投稿した内容のみを表示する
-		# @bookbook = current_user.books.find(params[:id])
-	end
+end
 
 # 投稿データの編集機能
 def edit
 	@book = Book.find(params[:id])
-		# editの時no_sidebarへ
+		# editの時layots/no_sidebarへ
 		render layout: "no_sidebar"
-
 	end
 
 # 編集して登録する機能
 def update
 	@book = Book.find(params[:id])
 	if @book.update(book_params)
-		redirect_to books_path(@book.id)
+		redirect_to books_path, notice:'You have updated book successfully.'
 	else
 		render :edit
 	end

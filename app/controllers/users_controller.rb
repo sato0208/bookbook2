@@ -31,6 +31,7 @@ end
 def edit
 # ユーザ情報を取得してインスタンス@userに保存し、編集用viewでform_forを使う準備
 @user = User.find(params[:id])
+# editアクションの際はサイドバーを表示させない。
 render layout: "no_sidebar"
 end
 
@@ -46,8 +47,13 @@ def index
   @users = User.all
   @book = Book.new
   @user_profire = current_user
-
 end
+
+def destroy
+  reset_session
+  redirect_to root_path,notice: 'rog_out!!!!!!!'
+end
+
 
 private
   # 名前とプロフィールイメージがきちんと入っているかチェックする

@@ -9,30 +9,33 @@
 	<p><% flash[:notice] %></p>
 	<% end %>
 </head>
+<%= render 'books/side', books: @books %>
 <body>
 	<h2>Book detail</h2>
-	<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
-	<%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %>
-	<%= @user.name %>
-	<!-- （ブックタイトル） -->
-	<%= @book.title %></p>
-	<!-- （ブックボディ） -->
-	<%= @book.body %></p>
+	<table>
+		<tbody>
+			<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
+			<tr>
+				<td><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %><br>
+					<%= @user.name %></td>
+					<!-- （ブックタイトル） -->
+					<td><%= @book.title %></td>
+					<!-- （ブックボディ） -->
+					<td><%= @book.body %></td>
 
-	<footer>
 
-		<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
-		<% if @book.user == current_user %>
+					<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
+					<% if @book.user == current_user %>
 
-		<span class="label label-success">
-			<%= link_to "Edit",edit_book_path(@book.id) %>
-		</span>
+					<td>
+						<%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-success"%></td>
+					
 
-		<span class="label label-danger">
-		<%= link_to "destroy", book_path(@book.id), method: :delete, data: {confirm: '本当に削除しますか？'} %>
-		<% end %>
-		</span>
-
-	</footer>
-</body>
-</html>
+					<td>
+						<%= link_to "destroy", book_path(@book.id),class:"label label-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %>
+						<% end %></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	</html>

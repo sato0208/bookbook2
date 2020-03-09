@@ -9,10 +9,10 @@
 	<title>Users</title>
 </head>
 <body>
-
+<%= render 'books/side', books: @books %>
 	<!-- book投稿一覧 -->
 
-	<h1>Users</h1>
+	<h2>Users</h2>
 	<table class="table table-condensed">
 		<tbody>
 			<tr>
@@ -23,7 +23,7 @@
 			<!-- books変数内から一つずつ取り出しbook変数へ -->
 			<% @users.each do |user| %>
 			<!-- bookとひもついているユーザーの画像データを表示させる -->
-			<tr><td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+			<tr><td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
 
 				<!-- タイトルにリンク付けする -->
 				<td><%= user.name %></td>

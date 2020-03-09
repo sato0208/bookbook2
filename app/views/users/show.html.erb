@@ -1,39 +1,13 @@
 <!-- これはユーザのマイページです -->
 
-
-<div class="profile-container">
-  <h3 class="profile-name">User info</h3>
-  <!-- update成功時にflash表示 -->
-  <% if flash.now[:notice] %>
-  <p><%= flash[:notice] %></p>
-  <% end %>
-  <!-- update成功flashここまで -->
-
-</div>
-<div class="profile-container">
-  <!-- attachment_image_tagにより画像を埋め込む。ユーザのプロフィール画像 -->
-  <h3 class=profile-kawauso">
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "pull-left profile-thumb", fallback: "no_image.jpg"%>
-
-    <h3 class=profile-name">
-      <string>name</string>
-      <%= @user.name %></h3>
-
-      <h3 class=profile-introduction">
-        <string>introduction</string>
-        <%= @user.introduction %></h3>
+<%= render 'books/side', books: @books %>
 
 
-        <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
-        <% if @user.id == current_user.id %>
-        <p><%= link_to"プロフィール編集",edit_user_path(@user),class:"pull-right" %></p>
-        <% end %>
-      </div>
+
 
       <section class="sct-color-1 slice">
         <div class="container-fluid masonry-container">
           <div class="row">
-            <div class="col-md-8 col-sm-offset-2">
               <div class="masonry-wrapper-cols">
                 <div class="masonry-gutter"></div>
                 <div class="masonry-block">
@@ -49,7 +23,7 @@
                     <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
                     <h1>Books</h1>
                     <tbody>
-                      <table class="table table-condensed">
+                      <table class="table table-hover">
                         <tr>
                           <th>Title</th>
                           <th>Option</th>
@@ -57,7 +31,7 @@
                           <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
                           <% @user_books.each do |book| %>
                           <!-- bookとひもついているユーザーの画像データを表示させる -->
-                          <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></td>
+                          <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
 
                             <!-- タイトルにリンク付けする -->
                             <td><%= link_to book_path(book.id) do %>
@@ -74,7 +48,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>

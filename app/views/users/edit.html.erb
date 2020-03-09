@@ -20,13 +20,13 @@
 
                     <!-- エラーメッセージ2〜20文字の間、空白はダメ-->
                     <% if @user.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= @user.errors.count %>errors prohibited this obj from being saved:</h2>
-                      <ul>
+                    <div class="alert alert-danger">
+
+                      <h4><%= @user.errors.count %>errors prohibited this obj from being saved:
+                      </h4>
                         <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
+                        <%= message %>
                         <% end %>
-                      </ul>
                     </div>
                     <% end %>
                     <!-- エラーメッセージここまで -->
