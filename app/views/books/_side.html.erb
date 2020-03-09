@@ -20,22 +20,22 @@
 
 
 <div class="container">
+  <div class="row">
     <!-- フラッシュが消えても高さが変わらないようにしたい -->
   <!-- notice flash表示 -->
   <% if flash.now[:notice] %>
   <p><%= flash[:notice] %></p>
   <% end %>
   <!-- noticd flashここまで -->
-  <div class="row">
-    <div class="col-sm-3" style="background-color: yellow;">
+    <div class="col-xs-3" style="background-color: yellow;">
 
 
 
       <!-- ログインしていたらサイドバーを表示させる -->
       <% if user_signed_in? %>
-<div class="container">
+<!-- <div class="container">
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-3"> -->
       <!-- ここからプロフィール -->
       <h2>User info</h2>
       <!-- ユーザのプロフィール画像 -->
@@ -43,12 +43,12 @@
         <table class="table table-condensed">
           <tr>
             <th>name</th>
-            <td><%= @user_profire.name %></td>
+            <th><%= @user_profire.name %></th>
           </tr>
 
           <tr>
             <th>introduction</th>
-            <td><%= @user_profire.introduction %></td>
+            <th><%= @user_profire.introduction %></th>
           </tr>
         </table>
       <!-- 自分がカレントユーザの場合はプロフィール編集ボタン表示 -->
@@ -56,17 +56,15 @@
       <!-- クラス：ボタン、レンチのアイコン -->
       <%= link_to "",edit_user_path(@user_profire), class: "btn btn-default  btn-block glyphicon glyphicon-wrench" %>
       <% end %>
-    </div>
+    <!-- </div>
   </div>
-</div>
+</div> -->
       <!-- ここまでプロフィール -->
 
-
-
       <!-- 新規投稿画面ここから -->
-      <div class="container">
+      <!-- <div class="container">
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-3"> -->
             <h2>New book</h2>
             <!-- form_for部分 -->
             <%= form_for(@book, url: '/books') do |f| %>
@@ -88,11 +86,5 @@
             <% end %>
             <% end %>
           </div>
-        </div>
-    </div>
-  </div>
-  <body>
-      <div class="container">
-      <div class="col-sm-9" style="background-color: orange;">
     <!-- 新規投稿画面ここまで -->
     <!-- サイドバーここまで -->

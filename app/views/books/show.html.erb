@@ -10,32 +10,28 @@
 	<% end %>
 </head>
 <%= render 'books/side', books: @books %>
-<body>
-	<h2>Book detail</h2>
-	<table>
-		<tbody>
-			<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
-			<tr>
-				<td><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %><br>
-					<%= @user.name %></td>
-					<!-- （ブックタイトル） -->
-					<td><%= @book.title %></td>
-					<!-- （ブックボディ） -->
-					<td><%= @book.body %></td>
-
-
-					<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
-					<% if @book.user == current_user %>
-
-					<td>
-						<%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-success"%></td>
-					
-
-					<td>
-						<%= link_to "destroy", book_path(@book.id),class:"label label-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %>
-						<% end %></td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
-	</html>
+<div class="col-xs-9">
+	<body>
+		<h2>Book detail</h2>
+		<table class="table">
+			<tbody>
+				<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
+				<tr>
+					<th><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></th>
+						<td><%= @user.name %></td>
+						<!-- （ブックタイトル） -->
+						<td><%= @book.title %></td>
+						<!-- （ブックボディ） -->
+						<td><%= @book.body %></td>
+						<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
+						<% if @book.user == current_user %>
+						<td>
+							<%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-success"%></td>
+							<td>
+								<%= link_to "destroy", book_path(@book.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+								<% end %>
+							</tr>
+						</tbody>
+					</table>
+				</body>
+				</html>

@@ -11,17 +11,12 @@
           <section class="slice slice-lg sct-color-1">
             <div class="container">
               <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-3 col-md-offset-4">
                   <div class="form-user style-1 rounded has-shadow-1">
                     <div class="form-header text-center">
-                      <h2 class="form-header-title">User info</h2>
-                    </div>
-
-
-                    <!-- エラーメッセージ2〜20文字の間、空白はダメ-->
+                                          <!-- エラーメッセージ2〜20文字の間、空白はダメ-->
                     <% if @user.errors.any? %>
                     <div class="alert alert-danger">
-
                       <h4><%= @user.errors.count %>errors prohibited this obj from being saved:
                       </h4>
                         <% @user.errors.full_messages.each do |message| %>
@@ -29,29 +24,28 @@
                         <% end %>
                     </div>
                     <% end %>
+                  </div>
                     <!-- エラーメッセージここまで -->
-
+                      <h2 class="form-header-title">User info</h2>
                     <div class="form-body">
                       <!-- ここにform_forを追加します -->
                       <%= form_for(@user)do |f| %>
                       <!-- 名前フォーム -->
-                      <div class="form-group has-icon">
-                        <string>name</string>
-                        <label class="control-label sr-only" for="inputName">Name</label>
-                        <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputName",pracholder:"名前", maxlength:20 %>
+                      <div class="form-group">
+                        <%= f.label :name,"name"%>
+                        <%= f.text_field :name, autofocus: true, class:"form-control", id:"name",pracholder:"名前", maxlength:20 %></label>
 
 
                         <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
                         <div class="form-group has-icon">
-
+                          <%= f.label :profile_image,"profile_image"%>
                           <!-- attachment_fieldにより画像選択用のボタンを表示させる -->
                           <%= f.attachment_field :profile_image, placeholder:"プロフィール画像", class:"user-edit-form" %>
                         </div>
 
-                        <div class="form-group has-icon">
-                          <label class="control-label sr-only" for="introduction">introduction</label>
-                          <string>introduction</string>
-                          <%= f.text_area :introduction, autofocus: true, class:"form-control", id:"introduction",pracholder:"自己紹介文" %>
+                        <div class="form-group">
+                          <%= f.label :introduction,"introduction"%>
+                          <%= f.text_area :introduction, class:"form-control", id:"introduction",pracholder:"自己紹介文" %>
                         </div>
                         <%= f.submit "Update User", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
                       </div>

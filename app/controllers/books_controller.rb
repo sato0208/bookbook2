@@ -39,8 +39,6 @@ end
 # 投稿データの編集機能
 def edit
 	@book = Book.find(params[:id])
-		# editの時layots/no_sidebarへ
-		render layout: "no_sidebar"
 	end
 
 # 編集して登録する機能

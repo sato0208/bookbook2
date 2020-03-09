@@ -26,21 +26,17 @@
           <!-- ユーザーがサインインしている場合 -->
           <% if user_signed_in? %>
             <ul class="navbar-text navbar-right">
-              <li class="nav-list">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                <%= link_to "Home", user_path(current_user.id) %>
-              </li>
-              <li class="nav-list">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <%= link_to "Users", users_path %>
+              <li>
+                <%= link_to " Home", user_path(current_user.id),class:"glyphicon glyphicon-home"%>
               </li>
               <li>
-                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                <%= link_to 'Books', books_path %>
+                <%= link_to " Users", users_path,class:"glyphicon glyphicon-user" %>
               </li>
               <li>
-                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                <%= link_to "logout", destroy_user_session_path, method: :delete %>
+                <%= link_to ' Books', books_path,class:"glyphicon glyphicon-book" %>
+              </li>
+              <li>
+                <%= link_to " logout", destroy_user_session_path,class:"glyphicon glyphicon-log-out", method: :delete %>
               </li>
             </ul>
           </div>
@@ -48,20 +44,16 @@
             <% else %>
             <ul class="navbar-text navbar-right">
               <li>
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                <%= link_to "Home", home_top_path %>
+                <%= link_to " Home", home_top_path,class:"glyphicon glyphicon-home" %>
               </li>
               <li>
-                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                <%= link_to "about", home_about_path %>
+                <%= link_to " about", home_about_path,class:"glyphicon glyphicon-link" %>
               </li>
               <li>
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                <%= link_to "sign up", new_user_registration_path %>
+                <%= link_to " sign up", new_user_registration_path,class:"glyphicon glyphicon-pencil" %>
               </li>
               <li>
-                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                <%= link_to "login", new_user_session_path %>
+                <%= link_to " login", new_user_session_path,class:"glyphicon glyphicon-log-in" %>
               </li>
             </ul>
           </div>
@@ -71,9 +63,6 @@
   </div>
 </header>
 
-
-
-    
         <%= yield %>
       </div>
     </div>

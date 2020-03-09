@@ -29,15 +29,24 @@ header {
     margin: 0,auto;
 }
 
-li {
+header li {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 0 15px;
   color: #9d9d9d;
   font-family: 'Glyphicons Halflings';
 }
 
-header a{
-	color: white;
+header .glyphicon {
+    position: relative;
+    color: #9d9d9d;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 header .navbar-left span {
@@ -45,10 +54,8 @@ header .navbar-left span {
     padding-top: 10px;
 }
 
-.nav-list {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    line-height: 20px;
+li {
+    color: #9d9d9d;
 }
 
 .row {
@@ -59,6 +66,7 @@ header .navbar-left span {
 .col-xs-3 {
     width: 25%;
 }
+
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
     float: left;
 }
@@ -68,24 +76,23 @@ h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 20px;
     margin-bottom: 10px;
 }
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: inherit;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
 }
-td {
-    font-family: verdana, arial, helvetica, sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-    margin: 33px;
-}
+
+
 .btn-sm, .btn-group-sm>.btn {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
 }
+
+
 
 .btn {
     padding: 5px 10px;
@@ -96,10 +103,53 @@ td {
 
 .table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td, .table>tfoot>tr>th, .table>tfoot>tr>td {
     padding: 8px;
+    margin: 10px 10px;
     line-height: 1.42857143;
+    line-height: 18px;
     vertical-align: top;
     border-top: 1px solid #ddd;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
 }
+
+html {
+    font-size: 10px;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+p, ol, ul, td {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 33px;
+}
+
+
+
+
+
+
+
+a {
+color: #333333;
+text-decoration:none;
+}
+
+body a:hover {
+color: #337ab7;
+background-color: black;
+text-decoration:underline;
+}
+
+header a:hover {
+color: white;
+text-decoration:none;
+}
+
+
+
 
 
 
@@ -144,10 +194,31 @@ footer{
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
+    border-color: #ccc;
     white-space: nowrap;
-    padding: 6px 12px;
+    padding: -10px 12px;
     font-size: 14px;
     line-height: 1.42857143;
     border-radius: 4px;
 
+}
+
+.btn-success {
+    color: #666;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-danger {
+    color: #666;
+}
+
+.btn-info {
+    color: #666;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
 }
