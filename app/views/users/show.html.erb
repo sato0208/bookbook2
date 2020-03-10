@@ -32,7 +32,8 @@
                           <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
                           <% @user_books.each do |book| %>
                           <!-- bookとひもついているユーザーの画像データを表示させる -->
-                          <tr><td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
+                          <tr><td><%= link_to user_path(@user) do %>
+                            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
 
                             <!-- タイトルにリンク付けする -->
                             <td><%= link_to book_path(book.id) do %>

@@ -8,9 +8,9 @@ class UsersController < ApplicationController
 def ensure_correct_user
   @user = User.find(params[:id])
   # ※カレントユーザーIDがbook.user_idと同じでない場合はbooks_pathへ飛ばす
+  @user_profire = current_user
   if current_user.id != @user.id
-    flash[:notice] = "権限がありません"
-    redirect_to(users_path)
+    redirect_to user_path(@user_profire)
   end
 end
 
@@ -25,6 +25,8 @@ end
 def edit
   # ユーザ情報を取得してインスタンス@userに保存し、編集用viewでform_forを使う準備
   @user = User.find(params[:id])
+  @book = Book.new
+
 end
 
 def update
@@ -38,7 +40,7 @@ end
 def index
   @users = User.all
   @book = Book.new
-  @user_profire = current_user
+  @user = current_user
 end
 
 def destroy

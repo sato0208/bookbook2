@@ -13,13 +13,13 @@ def ensure_correct_user
 	@book = Book.find(params[:id])
 	# ※カレントユーザーIDがbook.user_idと同じでない場合はbooks_pathへ飛ばす
 	if current_user.id != @book.user_id
-		flash[:notice] = "権限がありません"
-		redirect_to(book_path)
+		flash[:notice] = "ページにアクセスする権限がありません"
+		redirect_to(books_path)
 	end
 end
 
 def new
-	@new_book = Book.new
+	@book = Book.new(book_params)
 end
 
 # 投稿データの保存
@@ -29,9 +29,9 @@ def create
 	# 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
 	@book.user_id = current_user.id
 	@books = Book.all
-	@user_profire = current_user
+	@user = current_user
 	if @book.save
-		redirect_to books_path, notice: 'You have creatad book successfully.'
+		redirect_to book_path(@book.id), notice: 'You have creatad book successfully.'
 	else
 		render :index
 	end
@@ -40,14 +40,13 @@ end
 def index
 	@book = Book.new
 	@books = Book.all
-	@user_profire = current_user
-  		# @user = current_user
-  	end
+	@user = current_user
+end
 
 # 投稿データの詳細画面表示
 def show
-	@book = Book.find(params[:id])
-	@books = Book.all
+	@book = Book.new
+	@books = Book.find(params[:id])
 	@user = Book.find(params[:id]).user
 	@user_profire = current_user
 end
@@ -55,7 +54,7 @@ end
 # 投稿データの編集機能
 def edit
 	@book = Book.find(params[:id])
-	end
+end
 
 # 編集して登録する機能
 def update
