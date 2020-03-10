@@ -2,14 +2,13 @@ class ApplicationController < ActionController::Base
 	# before_actionはすべてのコントローラ実行する際に最初に行われる
 	# デバイスのコントローラー用
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	# authenticate_user！でログイン認証されてない場合ログイン画面へリダイレクトとする
-	before_action :authenticate_user!, only: [:show]
-
 
 	# ログイン後にマイページに飛ぶ
 	def after_sign_in_path_for(resource)
    		user_url(resource)
  	end
+
+
 
 	# 名前ログインのために必要な記述
 	protected

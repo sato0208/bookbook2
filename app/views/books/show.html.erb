@@ -17,7 +17,7 @@
 			<tbody>
 				<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
 				<tr>
-					<th><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg" %></th>
+					<th><%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'100x100' %></th>
 						<td><%= @user.name %></td>
 						<!-- （ブックタイトル） -->
 						<td><%= @book.title %></td>
@@ -28,7 +28,7 @@
 						<td>
 							<%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-success"%></td>
 							<td>
-								<%= link_to "destroy", book_path(@book.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+								<%= link_to "Destroy", book_path(@book.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
 								<% end %>
 							</tr>
 						</tbody>

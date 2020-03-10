@@ -14,7 +14,7 @@
  <div class="col-xs-9">
 
 	<h2>Users</h2>
-	<table class="table table-condensed">
+	<table class="table table-hover">
 		<tbody>
 			<tr>
 				<th>image</th>
@@ -24,12 +24,13 @@
 			<!-- books変数内から一つずつ取り出しbook変数へ -->
 			<% @users.each do |user| %>
 			<!-- bookとひもついているユーザーの画像データを表示させる -->
-			<tr><td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
-
+			<tr><td><%= link_to user_path(user) do %>
+				<%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
+			<% end %>
 				<!-- タイトルにリンク付けする -->
 				<td><%= user.name %></td>
 				<!-- bodyを表示 -->
-				<td><%= link_to "show", user_path(user) %>
+				<td><%= link_to "Show", user_path(user) %>
 				</td>
 			</tr>
 			<% end %>

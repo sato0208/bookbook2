@@ -1,22 +1,16 @@
 class UsersController < ApplicationController
+# authenticate_user！でログイン認証されてない場合home画面へリダイレクトとする
+  before_action :authenticate_user!
+  # カレントユーザーだけしかedit,update,destroyアクションは使えない。
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
-# 3/6自分で追加した文
-def new
- @user = User.new
-end
-  # 新規に作成したらcreateアクションが開く
-
-# userデータの保存
-def create
-  # user_paramsで投稿データとして許可されているパラメーターかチェック
-  @user = User.new(user_params)
-  # 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
-  @user.user_id = current_user.id
-  @users = User.all
-  if @user.save
-   redirect_to users_path, notice: 'Welcome! You have signed up successfully.'
-  else
-    render :index
+  # ※カレントユーザー以外は直接リンクを入力しても編集ページにいけないようにする
+def ensure_correct_user
+  @user = User.find(params[:id])
+  # ※カレントユーザーIDがbook.user_idと同じでない場合はbooks_pathへ飛ばす
+  if current_user.id != @user.id
+    flash[:notice] = "権限がありません"
+    redirect_to(users_path)
   end
 end
 
@@ -49,7 +43,7 @@ end
 
 def destroy
   reset_session
-  redirect_to root_path,notice: 'rog_out!!!!!!!'
+  redirect_to root_path,notice: 'Signed out successfully.'
 end
 
 
@@ -58,4 +52,6 @@ private
   def user_params
   	params.require(:user).permit(:name, :profile_image, :introduction)
   end
+
+
 end
