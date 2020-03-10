@@ -23,16 +23,17 @@
 
                     <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
                     <h2>Books</h2>
-                    <tbody>
                       <table class="table table-hover">
+                    <tbody>
                         <tr>
                           <th></th>
                           <th>Title</th>
                           <th>Option</th>
+                        </tr>
                           <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
                           <% @user_books.each do |book| %>
                           <!-- bookとひもついているユーザーの画像データを表示させる -->
-                          <tr><td><%= link_to user_path(@user) do %>
+                          <td><%= link_to user_path(@user) do %>
                             <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
 
                             <!-- タイトルにリンク付けする -->

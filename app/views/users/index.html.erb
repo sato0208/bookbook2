@@ -24,9 +24,8 @@
 			<!-- books変数内から一つずつ取り出しbook変数へ -->
 			<% @users.each do |user| %>
 			<!-- bookとひもついているユーザーの画像データを表示させる -->
-			<tr><td><%= link_to user_path(user) do %>
+			<tr><td>
 				<%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
-			<% end %>
 				<!-- タイトルにリンク付けする -->
 				<td><%= user.name %></td>
 				<!-- bodyを表示 -->
