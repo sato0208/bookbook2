@@ -31,7 +31,7 @@ def create
 	@books = Book.all
 	@user = current_user
 	if @book.save
-		redirect_to book_path(@book.id), notice: 'You have creatad book successfully.'
+		redirect_to book_path(@book.id), notice:'You have creatad book successfully.'
 	else
 		render :index
 	end

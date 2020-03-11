@@ -32,7 +32,7 @@ end
 def update
  @user = User.find(params[:id])
  if @user.update(user_params)
-   redirect_to user_path(@user.id), notice: 'Signed in successfully.'
+   redirect_to user_path(@user.id), alert: 'Signed in successfully.'
  else render :edit
  end
 end
@@ -45,7 +45,8 @@ end
 
 def destroy
   reset_session
-  redirect_to root_path,notice: 'Signed out successfully.'
+  redirect_to root_path, alert: "Signed out successfully."
+
 end
 
 
