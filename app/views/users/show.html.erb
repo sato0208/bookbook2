@@ -1,57 +1,46 @@
 <!-- これはユーザのマイページです -->
-
-<%= render 'books/side', books: @books %>
- <div class="col-xs-9">
-
-
-
-
-      <section class="sct-color-1 slice">
-        <div class="container-fluid masonry-container">
-          <div class="row">
-              <div class="masonry-wrapper-cols">
-                <div class="masonry-gutter"></div>
-                <div class="masonry-block">
-                  <div class="block block-image v1">
-
-                    <div class="block-image">
-                      <div class="view view-first">
-                        <a href="">
-                        </a>
-                      </div>
-                    </div>
-
-                    <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
-                    <h2>Books</h2>
-                      <table class="table table-hover">
-                    <tbody>
-                        <tr>
-                          <th></th>
-                          <th>Title</th>
-                          <th>Option</th>
-                        </tr>
-                          <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
-                          <% @user_books.each do |book| %>
-                          <!-- bookとひもついているユーザーの画像データを表示させる -->
-                          <td><%= link_to user_path(@user) do %>
-                            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
-
-                            <!-- タイトルにリンク付けする -->
-                            <td><%= link_to book_path(book.id) do %>
-                              <%= book.title %><% end %></td>
-                              <!-- bodyを表示 -->
-                              <td><%= book.body %></td>
-                            </tr>
-                            <% end %>
-                            <!-- book一覧ここまで -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>user_show</title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
 
 
-                          </table>
-                        </tbody>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <%= render 'books/side', books: @books %>
+      <div class="col-xs-9">
+      <section>
+        <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
+        <h2>Books</h2>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Option</th>
+            </tr>
+            <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
+            <% @user_books.each do |book| %>
+            <!-- bookとひもついているユーザーの画像データを表示させる -->
+            <td><%= link_to user_path(@user) do %>
+              <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
+
+              <!-- タイトルにリンク付けする -->
+              <td><%= link_to book_path(book.id) do %>
+                <%= book.title %><% end %></td>
+                <!-- bodyを表示 -->
+                <td><%= book.body %></td>
+              </tr>
+              <% end %>
+              <!-- book一覧ここまで -->
+
+            </table>
+          </tbody>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

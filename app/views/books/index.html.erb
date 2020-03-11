@@ -12,33 +12,31 @@
 	<%= render 'books/side', books: @books %>
 
 	<div class="col-xs-9">
-			<!-- book投稿一覧 -->
-			<h2>Books</h2>
-			<table class="table table-hover">
-				<tbody>
-					<tr>
-						<th></th>
-						<th>Title</th>
-						<th>Option</th>
-					</tr>
-					<!-- books変数内から一つずつ取り出しbook変数へ -->
-					<% @books.each do |book| %>
-					<!-- bookとひもついているユーザーの画像データを表示させる -->
-					<tr><td><%= link_to user_path(book) do %>
-						<%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
-						<!-- タイトルにリンク付けする -->
-						<td><%= link_to book_path(book.id) do %>
-							<%= book.title %><% end %>
-						</td>
-						<!-- bodyを表示 -->
-						<td><%= book.body %></td></tr>
-						<% end %>
-					</table>
-				</td>
+		<!-- book投稿一覧 -->
+		<h2>Books</h2>
+		<table class="table table-hover">
+			<tbody>
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>Option</th>
+				</tr>
+				<!-- books変数内から一つずつ取り出しbook変数へ -->
+				<% @books.each do |book| %>
+				<!-- bookとひもついているユーザーの画像データを表示させる -->
+				<tr>
+					<td><%= link_to user_path(book) do %>
+					<%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %><% end %></td>
+					<!-- タイトルにリンク付けする -->
+					<td><%= link_to book_path(book.id) do %>
+						<%= book.title %><% end %></td>
+					<!-- bodyを表示 -->
+					<td><%= book.body %></td>
+				</tr>
+					<% end %>
+				</table>
 			</tbody>
-			<!-- book投稿一覧ここまで -->
-		</div>
+		<!-- book投稿一覧ここまで -->
 	</div>
-</div>
 </body>
 </html>

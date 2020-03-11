@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>edit-book</title>
+  <title>edit_book</title>
   <link rel="stylesheet" href="">
 </head>
 <body>
@@ -40,25 +40,25 @@
 
               <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
               <div class="form-group has-icon">
-                  <!-- bodyフォーム -->
-                  <%= f.label :body,"body"%>
-                  <%= f.text_area :body, class:"form-control", id:"body",pracholder:"body"%>
-                </div>
-                <%= f.submit "Update Book", class:"btn btn-primary btn-block" %>
+                <!-- bodyフォーム -->
+                <%= f.label :body,"body"%>
+                <%= f.text_area :body, class:"form-control", id:"body",pracholder:"body"%>
               </div>
+              <%= f.submit "Update Book", class:"btn btn-primary btn-block" %>
             </div>
-            <% end %>
-
-
-            <%= link_to"show",book_path(@book.id) %>
-            |
-            <a class="back" href="/books">Back</a>
-
           </div>
+          <% end %>
+
+
+          <%= link_to"Show",book_path(@book.id) %>
+          |
+          <a class="back" href="/books">Back</a>
+
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </body>
 </html>

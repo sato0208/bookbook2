@@ -10,7 +10,7 @@
 	<p><% flash[:notice] %></p>
 	<% end %>
 </head>
-
+<!-- サイドバーを挿入 -->
 <%= render 'books/side', books: @books %>
 
 <div class="col-xs-9">
@@ -20,27 +20,24 @@
 			<tbody>
 				<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
 				<tr>
-				<th><%= link_to user_path(@user) do %>
-					<%= attachment_image_tag @books.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %>
-					<%= @user.name %><% end %></th>
-
-					<!-- ユーザーネームが表示されない -->
-					
+				<td><%= link_to user_path(@user) do %>
+				<%= attachment_image_tag @books.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+				<br>
+				<%= @user.name %><% end %></td>
 					<!-- （ブックタイトル） -->
-					<td><%= link_to book_path(@user) do %>
+				<td><%= link_to book_path(@books) do %>
 					<%= @books.title %><% end %></td>
 					<!-- （ブックボディ） -->
-					<td><%= @books.body %></td>
-					<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
-					<% if @books.user == current_user %>
+				<td><%= @books.body %></td>
 
-					<td>
-						<%= link_to "Edit",edit_book_path(@books.id), class:"btn btn-success"%></td>
-					<td>
-						<%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
-						<% end %>
+
+				<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
+				<% if @books.user == current_user %>
+					<td><%= link_to "Edit",edit_book_path(@books.id), class:"btn btn-success"%></td>
+					<td><%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+				<% end %>
 				</tr>
-		</tbody>
-	</table>
-</body>
+			</tbody>
+		</table>
+	</body>
 </html>
