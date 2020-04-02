@@ -11,39 +11,88 @@
 	</head>
 	<body>
 <!-- サイドバーを挿入 -->
-<%= render 'books/side', books: @books %>
+<%= render 'books/side', book: @book %>
 
 	<div class="container">
 	<div class="row">
 	<div class="col-xs-9">
 
-		<h1 class="jquery">Hello jQuery!</h1>
-		<h2>Book detail</h2>
-		<table class="table">
-			<tbody>
-				<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
-				<tr>
-					<td><%= link_to user_path(@user) do %>
-					<%= attachment_image_tag @books.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-					<br>
-					<%= @user.name %><% end %></td>
-						<!-- （ブックタイトル） -->
-					<td><%= link_to book_path(@books) do %>
-						<%= @books.title %><% end %></td>
-						<!-- （ブックボディ） -->
-					<td><%= @books.body %></td>
+	<!-- <h1 class="jquery">Hello jQuery!</h1> -->
+	<h2>Book detail</h2>
+	<table class="table">
+		<tbody>
+			<!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
+			<tr>
+				<td><%= link_to user_path(@user) do %>
+				<%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+				<br>
+				<%= @user.name %><% end %></td>
+					<!-- （ブックタイトル） -->
+				<td><%= link_to book_path(@book) do %>
+					<%= @book.title %><% end %></td>
+					<!-- （ブックボディ） -->
+				<td><%= @book.body %></td>
 
+<!-- イイねボタンここから -->
 
-						<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
-					<% if @books.user == current_user %>
-						<td>
-							<div class="edit_destroy"><%= link_to "Edit",edit_book_path(@books.id), class:"btn btn-success"%></td>
-						<td><%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %>
-							</td></div>
+			<% if @book.favorited_by?(current_user) %>
+				<!-- favorited_by?自分が含まれている場合 -->
+				<td>
+					<%= link_to book_favorites_path(@book),method: :delete do %>
+					<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i><% end %>
+					<%= @book.favorites.count %>いいね
+				</td>
+				<!-- favorited_by?自分が含まれていない場合 -->
+			<% else %>
+				<td>
+					<%= link_to book_favorites_path(@book),method: :post do %>
+					<i class="fa fa-heart-o" aria-hidden="true"></i>
 					<% end %>
+					<%= @book.favorites.count %>いいね
+				</td>
+			<% end %>
+				<!-- いいねボタンここまで -->
+
+					<!-- コメント -->
+			<td><%= "コメント数:#{@book.book_comments.count}" %></td>
+				<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
+			<% if @book.user == current_user %>
+				<td>
+					<div class="edit_destroy"><%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-success"%></td>
+				<td>
+					<%= link_to "Destroy", book_path(@book.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %>
+				</td>
+			<% end %>
+
+				</div>
+			</tr>
+		</tbody>
+		</table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th colspan="3">コメント</th>
+				</tr>
+			</thead>
+			<tbody>
+					<% @comments.each do |f| %>
+				<tr>
+					<td><%= f.comment %></td>
+			<!-- コメントの削除ボタン -->
+			<% if user_signed_in? && f.user_id == current_user.id %>
+			<td>
+					<%= link_to "comment_Destroy", book_book_comment_path(f.book_id,f.id),class:"btn btn-danger", method: :delete, data: {confirm: 'コメントを削除しますか？'} %></td>
+			<% end %>
+		<% end %>
 				</tr>
 			</tbody>
 		</table>
+		<!-- コメントフォームここから -->
+		<%= form_for [@book,@comment] do |f| %>
+			<%= f.text_area :comment, rows:'5'%>
+			<p><%= f.submit"送信する" %></p>
+		<% end %>
+		<!-- コメントフォームここまで -->
 	</div>
 	</div>
 	</div>

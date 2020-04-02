@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   # 多数のbookと一つのuserを関連づけする
   has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   # プロフィール画像投稿できるようにする記述
   attachment :profile_image
   # 名前カラムの入力数は2〜20文字の間でバリデート

@@ -25,30 +25,32 @@ end
 # 投稿データの保存
 def create
 	# book_paramsで投稿データとして許可されているパラメーターかチェック
-	@book = Book.new(book_params)
+	@new_book = Book.new(book_params)
 	# 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
-	@book.user_id = current_user.id
+	@new_book.user_id = current_user.id
 	@books = Book.all
 	@user = current_user
-	if @book.save
-		redirect_to book_path(@book.id), notice:'You have creatad book successfully.'
+	if @new_book.save
+		redirect_to book_path(@new_book.id), notice:'You have creatad book successfully.'
 	else
 		render :index
 	end
 end
 
 def index
-	@book = Book.new
+	@new_book = Book.new
 	@books = Book.all
 	@user = current_user
 end
 
 # 投稿データの詳細画面表示
 def show
-	@book = Book.new
-	@books = Book.find(params[:id])
+	@comments = Book.find(params[:id]).book_comments
+	@new_book = Book.new
+	@book = Book.find(params[:id])
 	@user = Book.find(params[:id]).user
 	@user_profire = current_user
+	@comment = BookComment.new
 end
 
 # 投稿データの編集機能

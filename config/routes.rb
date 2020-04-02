@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
 
-  get 'home/about' => 'homes#about'
+  get 'homes/about' => 'homes#about'
+  get 'homes/top' => 'homes#top'
 
 # 自動的にルーティングを設定してくれる
-  resources :books, only: [:create, :index, :show, :new, :edit, :destroy, :update]
+  resources :books, only: [:create, :index, :show, :new, :edit, :destroy, :update] do
+    resource :favorites, only:[:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
+  end
   resources :users, only: [:show, :edit, :update, :new, :index, :destroy]
   # resources :homes, only: [:about, :top]
 

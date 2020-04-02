@@ -15,10 +15,11 @@ def ensure_correct_user
 end
 
 def show
- @user = User.find(params[:id])
+  @comment = User.find(params[:id]).book_comments
+  @user = User.find(params[:id])
   # Userテーブルからユーザデータを取り出してそれに紐づく内容をbooksとして表示する
   @user_books = User.find(params[:id]).books
-  @book = Book.new
+  @new_book = Book.new
   @user_profire = current_user
 end
 
@@ -26,7 +27,6 @@ def edit
   # ユーザ情報を取得してインスタンス@userに保存し、編集用viewでform_forを使う準備
   @user = User.find(params[:id])
   @book = Book.new
-
 end
 
 def update
@@ -39,7 +39,7 @@ end
 
 def index
   @users = User.all
-  @book = Book.new
+  @new_book = Book.new
   @user = current_user
 end
 
