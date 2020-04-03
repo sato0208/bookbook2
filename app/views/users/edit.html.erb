@@ -1,15 +1,5 @@
-<!-- これはユーザー編集画面です -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>user_edit</title>
-    <link rel="stylesheet" href="">
-  </head>
-  <body>
       <div class="container">
-            <!-- エラーメッセージ2〜20文字の間、空白はダメ-->
+            <!-- エラーメッセージ-->
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
             <h4><%= @user.errors.count %>errors prohibited this obj from being saved:</h4>
@@ -18,18 +8,15 @@
             <% end %>
           </div>
         <% end %>
-            <!-- エラーメッセージここまで -->
 
             <!-- ここからユーザ編集画面 -->
         <section>
             <h2 class="form-header-title">User info</h2>
             <div class="form-body">
-            <!-- ここにform_forを追加します -->
             <%= form_for(@user)do |f| %>
-            <!-- 名前フォーム -->
                 <div class="form-group">
                   <%= f.label :name %>
-                  <%= f.text_field :name, class:"user-edit-form",pracholder:"名前", maxlength:20 %></label>
+                  <%= f.text_field :name, class:"user-edit-form",pracholder:"名前", maxlength:20 %>
                 </div>
 
                 <div class="form-group has-icon">

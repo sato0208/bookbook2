@@ -40,13 +40,24 @@ end
 def index
   @users = User.all
   @new_book = Book.new
-  @user = current_user
+  @user_profire = current_user
 end
 
 def destroy
   reset_session
   redirect_to root_path, alert: "Signed out successfully."
+end
 
+def following
+  @user = User.find(params[:id])
+  @users = @user.followings
+  render 'show_follow'
+end
+
+def follower
+  @user = User.find(params[:id])
+  @users = @user.followers
+  render 'show_follower'
 end
 
 

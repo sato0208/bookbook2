@@ -13,11 +13,15 @@ Rails.application.routes.draw do
   get 'homes/top' => 'homes#top'
 
 # 自動的にルーティングを設定してくれる
+  resources :relationships, only: [:create, :destroy]
   resources :books, only: [:create, :index, :show, :new, :edit, :destroy, :update] do
     resource :favorites, only:[:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :update, :new, :index, :destroy]
+  resources :users, only: [:show, :edit, :update, :index] do
+  member do
+    get :follower, :following
+  end
   # resources :homes, only: [:about, :top]
-
+end
 end

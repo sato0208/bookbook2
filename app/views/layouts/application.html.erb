@@ -11,8 +11,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-
-
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <nav class="nav navbar-nav navbar-left">
@@ -58,30 +56,16 @@
 <div class="container">
       <!-- flashここからnotice：ログイン・ログアウト -->
     <% if notice %>
-    <!-- ログインログアウト -->
     　 <div class="success">
-        <%= notice %>
+          <%= notice %>
        </div>
     <% elsif alert %>
        <div class="info">
           <%= alert %>
        </div>
     <% end %>
-    <!-- フラッシュここまで -->
-
-    <!-- ここからスライドショーskipper -->
+    <%= yield %>
 </div>
-<!-- <div id="container">
-  <div id="theTarget">
-    <div class="image1"></div>
-    <div class="image2"></div>
-    <div class="image3"></div>
-    <div class="image4"></div>
-    <div class="image5"></div>
-  </div>
-</div> -->
- <!-- スライドショーここまで -->
-<%= yield %>
 
 <div class="row">
   <div class="col-xs-3 col-xs-offset-9">

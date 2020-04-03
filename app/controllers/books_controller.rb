@@ -29,7 +29,7 @@ def create
 	# 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
 	@new_book.user_id = current_user.id
 	@books = Book.all
-	@user = current_user
+	@user_profire = current_user
 	if @new_book.save
 		redirect_to book_path(@new_book.id), notice:'You have creatad book successfully.'
 	else
@@ -40,7 +40,7 @@ end
 def index
 	@new_book = Book.new
 	@books = Book.all
-	@user = current_user
+	@user_profire = current_user
 end
 
 # 投稿データの詳細画面表示
