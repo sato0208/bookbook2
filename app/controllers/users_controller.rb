@@ -14,6 +14,19 @@ def ensure_correct_user
   end
 end
 
+# 検索用
+  def search
+    @new_book = Book.new
+    @user_profire = current_user
+    @how_search = params[:choice]
+    @user_or_book = params[:option]
+    if @user_or_book == "1"
+      @users = User.search(params[:search], @user_or_book, @how_search)
+    else
+      @books = Book.search(params[:search], @user_or_book, @how_search)
+    end
+  end
+
 def show
   @comment = User.find(params[:id]).book_comments
   @user = User.find(params[:id])

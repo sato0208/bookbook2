@@ -54,19 +54,36 @@
 </header>
 
 <div class="container">
-      <!-- flashここからnotice：ログイン・ログアウト -->
-    <% if notice %>
-    　 <div class="success">
-          <%= notice %>
-       </div>
-    <% elsif alert %>
-       <div class="info">
-          <%= alert %>
-       </div>
+  <div class="row">
+     <!-- flashここからnotice：ログイン・ログアウト -->
+      <div class="col-xs-3">
+        <% if notice %>
+        　 <div class="success">
+              <%= notice %>
+           </div>
+        <% elsif alert %>
+           <div class="info">
+              <%= alert %>
+           </div>
+        <% end %>
+      </div>
+  <!-- 検索フォームここから -->
+  <div class="col-xs-9">
+  <% if user_signed_in? %>
+    <h2>Search</h2>
+    <%= form_tag(search_path, :method => 'get') do %>
+    <!-- select_tagはプルダウンメニューを作るもの -->
+    <!-- userを選択して送信すると、パラメーターには”１”が送られてきます -->
+        <%= select_tag(:option, options_for_select([["user", "1"],["book","2"]]))%>
+        <%= select_tag(:choice, options_for_select([["あいまい検索",'1'],["後方一致検索",'2'],["前方一致検索",'3'],["完全一致検索","4"]])) %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search' %>
     <% end %>
+  <% end %>
+</div>
+</div>
     <%= yield %>
 </div>
-
 <div class="row">
   <div class="col-xs-3 col-xs-offset-9">
     <p>CopyRight Infratop.inc</p>

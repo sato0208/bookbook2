@@ -4,12 +4,26 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+# 多数のbookと一つのuserを関連づけする
+  has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  # プロフィール画像投稿できるようにする記述
+  attachment :profile_image
+  # 二文字以下、二十文字以上はバリデート
+  validates :name, presence: true, length: {maximum: 10, minimum: 2}
+  # 五十文字以上はバリデート
+  validates :introduction, length:{ maximum: 50}
 
 # foregin_key = 入口
 # source = 出口
 
   # フォロー、フォロワー機能
-  has_many :relationships
+  has_many :relationships, class_name: 'Relationship', foreign_key: 'user_id'
+
+  # has_manyは上の一行と同じ
+  # current_user.relationships
+  # Relationship.where(user_id: current_user.id)
   # followingクラス（モデル）は今作った架空のものなので、補足を付け足す必要があります。
   # through: :relationships は「中間テーブルはrelationshipsだよ」って設定
   # source: :followは「relationshipsテーブルのfollow_idを参考にして、followingsモデルにアクセスしてね」って事
@@ -22,16 +36,6 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   # フォローされている数
   has_many :followers, through: :reverse_of_relationships, source: :user
-
-
-  # 多数のbookと一つのuserを関連づけする
-  has_many :books, dependent: :destroy
-  has_many :book_comments, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  # プロフィール画像投稿できるようにする記述
-  attachment :profile_image
-  # 名前カラムの入力数は2〜20文字の間でバリデート
-  # validates :name, length:{in: 2..20 }, message: 'This site is only for under 2 and over 20'
 
   def follow(other_user)
     # フォローしようとしている other_user が自分自身ではないかを検証
@@ -59,13 +63,19 @@ class User < ApplicationRecord
     relationships.where(user_id: user.id).exists?
   end
 
-
-
-  # 二文字以下はバリデート
-  validates :name, presence: true, length:{ minimum: 2}
-  # 二十文字以上はバリデート
-  validates :name, presence: true, length:{ maximum: 20}
-  # 五十文字以上はバリデート
-  validates :introduction, length:{ maximum: 50}
-
+  def User.search(search, user_or_book, how_search)
+    if user_or_book == "1"
+      if how_search == "1"
+        User.where(['name LIKE ?', "%#{search}%"])
+      elsif how_search == "2"
+        User.where(['name LIKE ?', "%#{search}"])
+      elsif how_search == "3"
+        User.where(['name LIKE ?', "#{search}%"])
+      elsif how_search == "4"
+        User.where(['name LIKE ?', "#{search}"])
+      else
+        User.all
+      end
+    end
+  end
 end

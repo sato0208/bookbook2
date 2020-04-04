@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'homes/about' => 'homes#about'
   get 'homes/top' => 'homes#top'
+  get 'search' => 'users#search'
 
 # 自動的にルーティングを設定してくれる
   resources :relationships, only: [:create, :destroy]

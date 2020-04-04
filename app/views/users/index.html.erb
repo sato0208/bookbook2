@@ -18,7 +18,7 @@
 						<!-- bodyを表示 -->
 						<td>フォロー数:<%= link_to user.followings.count,following_user_path(user) %></td>
 						<td>フォロワー数:<%= link_to user.followers.count,follower_user_path(user) %></td>
-					
+
 				<!-- フォロー、フォロワー -->
 				<td><% unless user.follows_by?(current_user) %>
 				       <% if current_user.following?(user) %>

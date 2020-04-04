@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 2020_04_02_091653) do
   end
 
   create_table "relationships", force: :cascade do |t|
+    # フォローする
     t.integer "user_id"
+    # フォローされる
     t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

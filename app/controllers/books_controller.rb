@@ -22,6 +22,7 @@ def new
 	@book = Book.new(book_params)
 end
 
+
 # 投稿データの保存
 def create
 	# book_paramsで投稿データとして許可されているパラメーターかチェック
