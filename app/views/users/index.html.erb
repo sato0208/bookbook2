@@ -15,6 +15,7 @@
 						<td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %></td>
 						<!-- タイトルにリンク付けする -->
 						<td><%= user.name %></td>
+						<td id="favorite-<%= user.id %>"></td>
 						<!-- bodyを表示 -->
 						<td>フォロー数:<%= link_to user.followings.count,following_user_path(user) %></td>
 						<td>フォロワー数:<%= link_to user.followers.count,follower_user_path(user) %></td>

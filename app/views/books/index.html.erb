@@ -11,49 +11,28 @@
 					<th colspan="3"></th>
 				</tr>
 			</thead>
-			<!-- books変数内から一つずつ取り出しbook変数へ -->
 			<% @books.each do |book| %>
-			<!-- bookとひもついているユーザーの画像データを表示させる -->
 			<tbody>
 				<tr>
 					<td><%= link_to user_path(book) do %>
 							<%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %>
 						<% end %>
 					</td>
-					<!-- タイトルにリンク付けする -->
 					<td><%= link_to book_path(book.id) do %>
 							<%= book.title %>
 						<% end %></td>
-					<!-- bodyを表示 -->
 					<td><%= book.body %></td>
 
-
-				<!-- イイねボタンここから -->
-				<% if book.favorited_by?(current_user) %>
-					<!-- favorited_by?自分が含まれている場合 -->
-					<td>
-						<%= link_to book_favorites_path(book),method: :delete do %>
-						<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i><% end %>
-						<%= book.favorites.count %>いいね
+					<!-- いいねへのrender -->
+					<td id="favorites_<%= book.id %>">
+						  <%= render 'books/favorite',book: book %>
 					</td>
-					<!-- favorited_by?自分が含まれていない場合 -->
-					<% else %>
-					<td>
-						<%= link_to book_favorites_path(book),method: :post do %>
-						<i class="fa fa-heart-o" aria-hidden="true"></i>
-						<% end %>
-						<%= book.favorites.count %>いいね
-					</td>
-				<% end %>
-				<!-- いいねボタンここまで -->
 
 					<!-- コメントここから -->
 					<td><%= link_to "コメント数:#{book.book_comments.count}",book_path(book.id) %></td>
-					<!-- コメントここまで -->
 				</tr>
 			<% end %>
 			</tbody>
 		</table>
-		<!-- book投稿一覧ここまで -->
 	</div>
 </div>

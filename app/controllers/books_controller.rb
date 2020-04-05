@@ -7,7 +7,6 @@ class BooksController < ApplicationController
 	# カレントユーザーだけしかedit,update,destroyアクションは使えない。
 	before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
-
 # ※カレントユーザー以外は直接リンクを入力しても編集ページにいけないようにする
 def ensure_correct_user
 	@book = Book.find(params[:id])
@@ -21,7 +20,6 @@ end
 def new
 	@book = Book.new(book_params)
 end
-
 
 # 投稿データの保存
 def create
@@ -81,4 +79,5 @@ private
 def book_params
 	params.require(:book).permit(:title, :body, :user_id)
 end
+
 end

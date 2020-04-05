@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #   registrations: 'users/registrations'
   #   }
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
 
@@ -20,9 +21,8 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update, :index] do
-  member do
-    get :follower, :following
+    member do
+      get :follower, :following
+    end
   end
-  # resources :homes, only: [:about, :top]
-end
 end

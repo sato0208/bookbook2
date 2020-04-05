@@ -5,7 +5,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <!-- FontAwesomeアイコンを使用するための記述。スタイルシートの上に書くこと -->
-    <script src="https://kit.fontawesome.com/2b9bb87bcc.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2b9bb87bcc.js" crossorigin="anonymous"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -54,9 +54,7 @@
 </header>
 
 <div class="container">
-  <div class="row">
      <!-- flashここからnotice：ログイン・ログアウト -->
-      <div class="col-xs-3">
         <% if notice %>
         　 <div class="success">
               <%= notice %>
@@ -66,10 +64,9 @@
               <%= alert %>
            </div>
         <% end %>
-      </div>
   <!-- 検索フォームここから -->
-  <div class="col-xs-9">
   <% if user_signed_in? %>
+  <div class="search-form">
     <h2>Search</h2>
     <%= form_tag(search_path, :method => 'get') do %>
     <!-- select_tagはプルダウンメニューを作るもの -->
@@ -79,9 +76,8 @@
         <%= text_field_tag :search %>
         <%= submit_tag 'Search' %>
     <% end %>
+  </div>
   <% end %>
-</div>
-</div>
     <%= yield %>
 </div>
 <div class="row">
